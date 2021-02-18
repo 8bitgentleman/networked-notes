@@ -58,7 +58,7 @@ export default function NotePane(props: Props) {
 
                 {note.backlink_note_ids.length ? (
                   <div className={styles.backlinkNotes}>
-                    {note.backlink_note_ids.map((backlinkNoteID) => {
+                    {note.backlink_note_ids.map((backlinkNoteID, index) => {
                       return (
                         <div
                           key={backlinkNoteID}
@@ -70,11 +70,14 @@ export default function NotePane(props: Props) {
                               loadLinkedNotes={false}
                             >
                               {(backlinkNote) => {
+                                console.log(backlinkNote.title)
+                                console.log(note.backlink_note_text[index])
+                                console.log(backlinkNote.id)
                                 return (
                                   <div
                                     className={styles.backlinkNoteContent}
                                     dangerouslySetInnerHTML={{
-                                      __html: backlinkNote.html,
+                                      __html: "<h3>" + backlinkNote.title + "</h3><div>" + backlinkNote.backlink_note_text[index] + "</div>",
                                     }}
                                     onClick={(e) => {
                                       e.preventDefault();
